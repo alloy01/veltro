@@ -19,9 +19,8 @@ const Dashboard = () => {
             // showing message in the toast
             setToastMessage(response.data.message);
             showToast();
-            setLoadedDocs(response.data.payload)
+            setLoadedDocs(response.data.payload);
 
-            console.log(response.data.payload);
         }
         catch(err){
             // showing error in the toast

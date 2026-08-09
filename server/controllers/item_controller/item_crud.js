@@ -57,7 +57,7 @@ export const editItem = async(req,res) => {
 
     const user = req.user.id;
 
-    const {item_name, item_supplier, item_quantity, item_costprice, item_category, item_unit, item_status, item_desc} = req.body;
+    let {item_name, item_supplier, item_quantity, item_costprice, item_category, item_unit, item_status, item_desc} = req.body;
 
     if(!user){
         return res_help(res,false,"User not specified.")
@@ -78,6 +78,17 @@ export const editItem = async(req,res) => {
             return res_help(res,false,"Item does not exist.")
         }
         //handling the case if item does not exist
+
+        if(item_quantity === '0'){
+            item_status = 'Out of Stock';
+        }
+        else if(item_status === 'Out of Stock'){
+            item_quantity = '0';
+        }
+        else if(item_quantity !== '0'){
+            item_status = 'In Stock';
+        }
+        // we don't want to show quantity = 0 & In Stock, it would be a logical error
 
         const updatedItem = await itemModel.findOneAndUpdate({item_name, user},{
             ...(item_supplier && { item_supplier }),
