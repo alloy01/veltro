@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext.jsx"
 import api from "../api/axios.js";
 import Toast from "../components/Toast.jsx";
 import DocsItem from "../components/DocsItem.jsx";
+import DashHeader from "../components/DashHeader.jsx";
 
 const Dashboard = () => {
     // intial toast setup
@@ -52,16 +53,7 @@ const Dashboard = () => {
         fetchDocs();
     }, []);
 
-    // handling the logout button
-    const logout = async () => {
-        try{
-            await api.post("/auth/logout");
-            window.location.reload();
-        }
-        catch(err){
-            showToast(err.message);
-        }
-    }
+    
 
     // handling operations buttons states
     const [addItem,setAddItem] = useState(false);
@@ -156,18 +148,9 @@ const Dashboard = () => {
 
     return(
         <div className="bg-black min-h-screen relative overflow-hidden">
-            {/* info bar */}
-            <div className="py-8 px-8 flex-col flex items-center text-slate-100 gap-y-8 font-mono">
-                <p className=" text-2xl">Veltro - Dashboard
-                </p>
-                <div className="flex justify-between w-full px-8">
-                    <p className="text-xl">user:{username}</p>
-                    <button className=" border-2 border-slate-100 px-2 py-1 cursor-pointer" onClick={logout}>
-                        logout
-                    </button>
-                </div>
-            </div>
-
+            
+            <DashHeader />
+            
             <Toast
             toastBlock={toast.visible}
             toastMessage={toast.message}
