@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext.jsx"
 import api from "../api/axios.js";
 import Toast from "../components/Toast.jsx";
-import DocsItem from "../components/DocsItem.jsx";
 import DashHeader from "../components/DashHeader.jsx";
+import DashTable from "../components/DashTable.jsx";
 
 const Dashboard = () => {
     // intial toast setup
@@ -25,9 +25,6 @@ const Dashboard = () => {
             })
         }, 3000);
     }
-
-    // getting the username to show it on display
-    const {username} = useContext(AuthContext);
 
     // loaded docs state
     const [loadedDocs, setLoadedDocs] = useState(null);
@@ -53,7 +50,6 @@ const Dashboard = () => {
         fetchDocs();
     }, []);
 
-    
 
     // handling operations buttons states
     const [addItem,setAddItem] = useState(false);
@@ -150,7 +146,7 @@ const Dashboard = () => {
         <div className="bg-black min-h-screen relative overflow-hidden">
             
             <DashHeader />
-            
+
             <Toast
             toastBlock={toast.visible}
             toastMessage={toast.message}
@@ -231,38 +227,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* items content */}
-                <div className="bg-slate-400/10 w-3/4 rounded-2xl border border-stone-100/20 h-fit py-2 px-4"> 
-                    <div>
-                        <p className="text-stone-200  underline-offset-8 underline text-center text-lg">Items</p>
-                        <div className="py-4 overflow-x-auto">
-                            {loadedDocs && loadedDocs.length > 0 ? (
-                                <table className="w-full text-stone-200 font-mono">
-                                    <thead>
-                                        <tr className="border-b border-stone-500">
-                                            <th className="text-left py-2 px-3">Name</th>
-                                            <th className="text-left py-2 px-3">Category</th>
-                                            <th className="text-left py-2 px-3">Quantity</th>
-                                            <th className="text-left py-2 px-3">Unit</th>
-                                            <th className="text-left py-2 px-3">Supplier</th>
-                                            <th className="text-left py-2 px-3">Status</th>
-                                            <th className="text-left py-2 px-3">Cost Price</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        {loadedDocs.map((item) => (
-                                            <DocsItem key={item._id} item={item} />
-                                        ))}
-                                    </tbody>
-                                </table>
-                            ) : (
-                                <p className="text-stone-300 text-center">
-                                    No docs available.
-                                </p>
-                            )}
-                        </div>
-                    </div>
-                </div>
+                <DashTable loadedDocs={ loadedDocs }/>
 
             </div>
         </div>
