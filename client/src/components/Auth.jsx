@@ -40,18 +40,25 @@ const Auth = () => {
 		}
 	};
 
-	// toast states to update toast component as soon as they update
-	const [toastBlock, setToastBlock] = useState(false);
-	const [toastMessage, setToastMessage] = useState("");
+	// intial toast setup
+    const [toast, setToast] = useState({
+        visible: false,
+        message: ""
+    })
 
-	// timeout to auto hide toast
-	const showToast = () => {
-		setToastBlock(true);
+    const showToast = (toastMessage) => {
+        setToast({
+            visible: true,
+            message: toastMessage
+        });
 
-		setTimeout(() => {
-			setToastBlock(false);
-		},3000);
-	}
+        setTimeout(() => {
+            setToast({
+                visible: false,
+                message: ""
+            })
+        }, 3000);
+    }
 
 	// handle submit button
 	const handleSubmit = async (e) => {
@@ -71,8 +78,7 @@ const Auth = () => {
 			password: "",
 			});
 
-			setToastMessage(response.data.message);
-			showToast();
+			showToast(response.data.message);
 
 			if(response.data.success){
 				// backend already created cookie
@@ -85,8 +91,7 @@ const Auth = () => {
 
 		catch (err) {
 			// shows the error message in toast
-			setToastMessage(err.message);
-			showToast();
+			showToast(err.message);
 		}
 	};
 
@@ -111,7 +116,7 @@ const Auth = () => {
     <div className="h-screen w-screen relative border flex items-center overflow-hidden justify-center">
 
 		{/* toast component */}
-		<Toast toastBlock={toastBlock} toastMessage={toastMessage}/>
+		<Toast toastBlock={toast.visible} toastMessage={toast.message}/>
 
 		{/* login button */}
 		<button

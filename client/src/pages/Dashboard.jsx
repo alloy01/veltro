@@ -5,6 +5,26 @@ import Toast from "../components/Toast.jsx";
 import DocsItem from "../components/DocsItem.jsx";
 
 const Dashboard = () => {
+    // intial toast setup
+    const [toast, setToast] = useState({
+        visible: false,
+        message: ""
+    })
+
+    const showToast = (toastMessage) => {
+        setToast({
+            visible: true,
+            message: toastMessage
+        });
+
+        setTimeout(() => {
+            setToast({
+                visible: false,
+                message: ""
+            })
+        }, 3000);
+    }
+
     // getting the username to show it on display
     const {username} = useContext(AuthContext);
 
@@ -17,19 +37,17 @@ const Dashboard = () => {
             const response = await api.get("/item/fetch-docs");
             
             // showing message in the toast
-            setToastMessage(response.data.message);
-            showToast();
+            showToast(response.data.message);
             setLoadedDocs(response.data.payload);
 
         }
         catch(err){
             // showing error in the toast
-            setToastMessage(err.message);
-            showToast();
+            showToast(err.message);
         }
     }
 
-    // react hook to fetch again when anything updates
+    // react hook to fetch whenever dashboard mounts
     useEffect(() => {
         fetchDocs();
     }, []);
@@ -41,8 +59,7 @@ const Dashboard = () => {
             window.location.reload();
         }
         catch(err){
-            setToastMessage(err.message);
-            showToast();
+            showToast(err.message);
         }
     }
 
@@ -51,19 +68,6 @@ const Dashboard = () => {
     const [editItem,setEditItem] = useState(false);
     const [deleteItem,setDeleteItem] = useState(false);
     const [filterItem,setFilterItem] = useState(false);
-
-    // toast states to update toast component as soon as they update
-	const [toastBlock, setToastBlock] = useState(false);
-	const [toastMessage, setToastMessage] = useState("");
-
-	// timeout to auto hide toast
-	const showToast = () => {
-		setToastBlock(true);
-
-		setTimeout(() => {
-			setToastBlock(false);
-		},3000);
-	}
 
     // functions for handling modify buttons
     const handleModifyButtons = (modifyItem,setModifyItem,modifyState) => {
@@ -116,15 +120,13 @@ const Dashboard = () => {
                     setLoadedDocs(response.data.payload)
                 }
 
-                setToastMessage(response.data.message);
-                showToast();
+                showToast(response.data.message);
             }
         }
 
         catch(err){
             // shows the error message in toast
-            setToastMessage(err.message);
-            showToast();
+            showToast(err.message);
         }
     }
 
@@ -167,8 +169,8 @@ const Dashboard = () => {
             </div>
 
             <Toast
-            toastBlock={toastBlock}
-            toastMessage={toastMessage}
+            toastBlock={toast.visible}
+            toastMessage={toast.message}
             />
 
             {/* area for item list and modify */}
