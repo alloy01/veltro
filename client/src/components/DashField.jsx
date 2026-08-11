@@ -53,6 +53,8 @@ const DashField = ({ setLoadedDocs }) => {
 
             const response = await api.post(`/item/${modifyState}`, payload);
 
+            console.log(payload);
+
             if(response.data){
                 setFormData({
                     item_name: "",
@@ -62,7 +64,7 @@ const DashField = ({ setLoadedDocs }) => {
                     item_desc: "",
                     item_filter_field: "",
                     item_filter_param: "",
-                    item_status: "In Stock",
+                    item_status: "",
                     item_supplier: "",
                     item_costprice: ""
                 })
@@ -98,7 +100,7 @@ const DashField = ({ setLoadedDocs }) => {
         item_desc: "",
         item_filter_field: "",
         item_filter_param: "",
-        item_status: "In Stock",
+        item_status: "",
         item_supplier: "",
         item_costprice: ""
     })
@@ -107,10 +109,15 @@ const DashField = ({ setLoadedDocs }) => {
     const handleChange = (e) => {
         const {name, value} = e.target;
 
+        // to use numbers as number in backend not as string
+        const numericFields = ["item_quantity", "item_costprice"];
+
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value
-        }))
+            [name]: numericFields.includes(name)
+                ? value === "" ? "" : Number(value)
+                : value
+        }));
     }
 
     return(

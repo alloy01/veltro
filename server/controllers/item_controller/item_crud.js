@@ -68,7 +68,7 @@ export const editItem = async(req,res) => {
     }
     //check if details are missing
 
-    if(!item_desc && !item_category && item_quantity === undefined && !item_status && item_costprice === undefined && !item_unit && !item_supplier){
+    if(!item_desc && !item_category && item_quantity !== undefined && !item_status && item_costprice !== undefined && !item_unit && !item_supplier){
         return res_help(res,false,"No parameter found to update.")
     }
 
@@ -79,25 +79,27 @@ export const editItem = async(req,res) => {
         }
         //handling the case if item does not exist
 
-        if(item_quantity === '0'){
-            item_status = 'Out of Stock';
+        if(item_quantity !== undefined){
+            if(item_quantity === 0){
+                item_status = "Out of Stock";
+            }
+            else{
+                item_status = "In Stock";
+            }
         }
-        else if(item_status === 'Out of Stock'){
-            item_quantity = '0';
-        }
-        else if(item_quantity !== '0'){
-            item_status = 'In Stock';
+        else if(item_status === "Out of Stock"){
+            item_quantity = 0;
         }
         // we don't want to show quantity = 0 & In Stock, it would be a logical error
 
         const updatedItem = await itemModel.findOneAndUpdate({item_name, user},{
-            ...(item_supplier && { item_supplier }),
-            ...(item_quantity && { item_quantity }),
-            ...(item_status && { item_status }),
-            ...(item_costprice && { item_costprice }),
-            ...(item_category && { item_category }),
-            ...(item_unit && { item_unit }),
-            ...(item_desc && { item_desc })
+            ...(item_supplier !== "" && { item_supplier }),
+            ...((item_quantity !== undefined && item_quantity !== "") && { item_quantity }),
+            ...(item_status !== undefined && { item_status }),
+            ...((item_costprice !== undefined && item_costprice !== "") && { item_costprice }),
+            ...(item_category !== "" && { item_category }),
+            ...(item_unit !== "" && { item_unit }),
+            ...(item_desc !== "" && { item_desc })
         },{new:true});
         // update the variables whose parameters are present
 

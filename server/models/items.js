@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const itemSchema = mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'user'
+        ref:"user"
     },
     item_name:{
         type:String,
@@ -11,7 +11,7 @@ const itemSchema = mongoose.Schema({
     },
     item_desc:{
         type:String,
-        default: ' '
+        default: ""
     },
     item_category:{
         type:String,
@@ -19,8 +19,7 @@ const itemSchema = mongoose.Schema({
     },
     item_quantity:{
         type:Number,
-        required:true,
-        default: 1
+        required:true
     },
     item_unit:{
         type:String,
@@ -42,7 +41,7 @@ const itemSchema = mongoose.Schema({
 },{timestamps:true});
 //create a schema with the required attributes in it
 
-const itemModel = mongoose.model('item',itemSchema);
+const itemModel = mongoose.model("item",itemSchema);
 //creating a models based on the schema above and the model
 
 export {itemModel}
