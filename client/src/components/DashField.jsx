@@ -34,7 +34,7 @@ const DashField = ({ setLoadedDocs }) => {
         try{
             const payload = formData;
 
-            const response = await api.post(`${import.meta.env.VITE_API_URL}/item/${modifyState}`, payload);
+            const response = await api.post(`/item/${modifyState}`, payload);
 
             if(response.data){
                 setFormData({

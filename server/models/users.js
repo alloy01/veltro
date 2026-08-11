@@ -19,4 +19,4 @@ const userSchema = mongoose.Schema({
 const userModel = mongoose.model('user',userSchema);
 //creating a models based on the schema above and the models will be 'users'
 
-export {userModel}
+export { userModel }

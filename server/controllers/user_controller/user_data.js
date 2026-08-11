@@ -1,4 +1,4 @@
-import { userModel } from "../models/user.js";
+import { userModel } from "../../models/users.js";
 import { res_help } from "../../utils/response.js";
 
 export const getData = async (req,res) =>{
