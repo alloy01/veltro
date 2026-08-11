@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import api from "../api/axios";
 import Toast from "./Toast";
 
@@ -10,19 +10,36 @@ const DashField = ({ setLoadedDocs }) => {
         message: ""
     })
 
+    const toastTimer = useRef(null);
+
     const showToast = (toastMessage) => {
         setToast({
             visible: true,
             message: toastMessage
         });
 
-        setTimeout(() => {
+        if(toastTimer.current){
+            clearTimeout(toastTimer.current);
+        }
+
+        toastTimer.current = setTimeout(() => {
             setToast({
                 visible: false,
                 message: ""
-            })
+            });
+
+            toastTimer.current = null;
         }, 3000);
     }
+
+    // cleanup toast so we don't leave any stale component
+    useEffect(() => {
+        return () => {
+            if(toastTimer.current){
+                clearTimeout(toastTimer.current);
+            }
+        }
+    }, [])
 
     // modify state like "edit item" will help us to what input fields to show when user clicks modify buttons
     const [modifyState,setModifyState] = useState(null);

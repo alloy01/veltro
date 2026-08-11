@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState, useRef } from "react"
 import { AuthContext } from "../context/AuthContext.jsx"
 import api from "../api/axios.js";
 import Toast from "../components/Toast.jsx";
@@ -7,11 +7,14 @@ import DashTable from "../components/DashTable.jsx";
 import DashField from "../components/DashField.jsx";
 
 const Dashboard = () => {
+
     // intial toast setup
     const [toast, setToast] = useState({
         visible: false,
         message: ""
     })
+
+    const toastTimer = useRef(null);
 
     const showToast = (toastMessage) => {
         setToast({
@@ -19,13 +22,28 @@ const Dashboard = () => {
             message: toastMessage
         });
 
-        setTimeout(() => {
+        if(toastTimer.current){
+            clearTimeout(toastTimer.current);
+        }
+
+        toastTimer.current = setTimeout(() => {
             setToast({
                 visible: false,
                 message: ""
-            })
+            });
+
+            toastTimer.current = null;
         }, 3000);
     }
+
+    // cleanup toast so we don't leave any stale component
+    useEffect(() => {
+        return () => {
+            if(toastTimer.current){
+                clearTimeout(toastTimer.current);
+            }
+        }
+    }, [])
 
     // loaded docs state
     const [loadedDocs, setLoadedDocs] = useState(null);

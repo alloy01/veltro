@@ -41,24 +41,41 @@ const Auth = () => {
 	};
 
 	// intial toast setup
-    const [toast, setToast] = useState({
-        visible: false,
-        message: ""
-    })
+	const [toast, setToast] = useState({
+		visible: false,
+		message: ""
+	})
 
-    const showToast = (toastMessage) => {
-        setToast({
-            visible: true,
-            message: toastMessage
-        });
+	const toastTimer = useRef(null);
 
-        setTimeout(() => {
-            setToast({
-                visible: false,
-                message: ""
-            })
-        }, 3000);
-    }
+	const showToast = (toastMessage) => {
+		setToast({
+			visible: true,
+			message: toastMessage
+		});
+
+		if(toastTimer.current){
+			clearTimeout(toastTimer.current);
+		}
+
+		toastTimer.current = setTimeout(() => {
+			setToast({
+				visible: false,
+				message: ""
+			});
+
+			toastTimer.current = null;
+		}, 3000);
+	}
+
+	// cleanup toast so we don't leave any stale component
+	useEffect(() => {
+		return () => {
+			if(toastTimer.current){
+				clearTimeout(toastTimer.current);
+			}
+		}
+	}, [])
 
 	// handle submit button
 	const handleSubmit = async (e) => {

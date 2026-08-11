@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useRef, useEffect } from "react"
 import { AuthContext } from "../context/AuthContext"
 import api from "../api/axios";
 
@@ -13,19 +13,36 @@ const DashHeader = () => {
         message: ""
     })
 
+    const toastTimer = useRef(null);
+
     const showToast = (toastMessage) => {
         setToast({
             visible: true,
             message: toastMessage
         });
 
-        setTimeout(() => {
+        if(toastTimer.current){
+            clearTimeout(toastTimer.current);
+        }
+
+        toastTimer.current = setTimeout(() => {
             setToast({
                 visible: false,
                 message: ""
-            })
+            });
+
+            toastTimer.current = null;
         }, 3000);
     }
+
+    // cleanup toast so we don't leave any stale component
+    useEffect(() => {
+        return () => {
+            if(toastTimer.current){
+                clearTimeout(toastTimer.current);
+            }
+        }
+    }, [])
 
     // handling the logout button
     const logout = async () => {
