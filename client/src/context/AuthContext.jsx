@@ -6,8 +6,10 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
 
-    const [user,setUser] = useState(null);
-    const [username,setUsername] = useState(null);
+    const [user,setUser] = useState({
+        id: null,
+        name: null
+    });
     // when theres ongoing authentication, show loading screen to frontend
     const [loading,setLoading] = useState(true);
 
@@ -17,13 +19,18 @@ export const AuthProvider = ({children}) => {
             const response = await api.get("/auth/is-auth");
             
             if(response.data.success){
-                setUser(response.data.userId);
-                setUsername(response.data.username);
+                setUser({
+                    id: response.data.userId,
+                    name: response.data.username
+                });
             }
             
         }
         catch(err){
-            setUser(null);
+            setUser({
+                id: null,
+                name: null
+            });
         }
         // when loading is finally done then continue, else theres a catch function above
         finally{
@@ -41,7 +48,6 @@ export const AuthProvider = ({children}) => {
         <AuthContext.Provider
             value = {{
                 user,
-                username,
                 setUser,
                 loading,
                 checkAuth

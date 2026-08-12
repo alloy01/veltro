@@ -10,10 +10,14 @@ export default function ProtectedRoute({children}){
     
     // if things are loading then show this
     if(loading){
-        return <h1>Loading...</h1>;
+        return(
+            <div className="min-h-screen bg-black flex items-center justify-center">
+                <p className="font-mono text-stone-200 text-2xl">loading...</p>
+            </div>
+        )
     }
     // if user is not present redirect them to auth page
-    if(!user){
+    if(!user.id){
         return <Navigate to="/" replace />;
     }
 

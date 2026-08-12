@@ -16,7 +16,7 @@ const Login = () => {
         )
     }
     // if user is already present i.e. user already has a token on it machine then redirect it to '/dashboard'
-    if(user){
+    if(user.id != null){
         return <Navigate to="/dashboard" />
     }
 

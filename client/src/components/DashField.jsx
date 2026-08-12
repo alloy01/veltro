@@ -53,8 +53,6 @@ const DashField = ({ setLoadedDocs }) => {
 
             const response = await api.post(`/item/${modifyState}`, payload);
 
-            console.log(payload);
-
             if(response.data){
                 setFormData({
                     item_name: "",
@@ -80,14 +78,12 @@ const DashField = ({ setLoadedDocs }) => {
                 }
 
                 showToast(response.data.message);
-                console.log(response)
             }
         }
 
         catch(err){
             // shows the error message in toast
             showToast(err.message);
-            console.log(err)
         }
     }
 

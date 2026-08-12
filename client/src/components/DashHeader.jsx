@@ -5,7 +5,7 @@ import api from "../api/axios";
 const DashHeader = () => {
 
     // to display username on dashboard
-    const {username} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
 
     // intial toast setup
     const [toast, setToast] = useState({
@@ -48,12 +48,10 @@ const DashHeader = () => {
     const logout = async () => {
         try{
             const resp = await api.post("/auth/logout");
-            console.log(resp)
             window.location.reload();
         }
         catch(err){
             showToast(err.message);
-            console.log(err)
         }
     }
 
@@ -64,7 +62,7 @@ const DashHeader = () => {
                 <p className=" text-2xl">Veltro - Dashboard
                 </p>
                 <div className="flex justify-between w-full px-8">
-                    <p className="text-xl">admin: {username}</p>
+                    <p className="text-xl">admin: {user.name}</p>
                     <button className=" border-2 border-stone-100 px-2 py-1 cursor-pointer" onClick={logout}>
                         logout
                     </button>
