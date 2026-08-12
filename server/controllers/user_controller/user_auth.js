@@ -124,11 +124,12 @@ export const logout = async (req,res) => {
 
 export const isAuthenticated = async (req,res)=>{
     try{
-        return res.json({
-            success:true,
-            userId:req.user.id,
-            username:req.user.username
-        });
+        const payload = {
+            userId: req.user.id,
+            username: req.user.username
+        }
+
+        return res_help(res, true, "User is authenticated.", payload);
     }
     catch(err){
         return res_help(res,false,err.message.toString());

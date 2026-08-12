@@ -1,6 +1,7 @@
-export const res_help = (res,success_bool,success_message) => {
+export const res_help = (res,success_bool, success_message, payload = null) => {
     return res.json({
         success: success_bool,
-        message: success_message
+        message: success_message,
+        payload: payload
     })
 }

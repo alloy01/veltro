@@ -13,13 +13,13 @@ export const getData = async (req,res) =>{
         }
         //checks if user exists or not
 
-        return res.json({
-            success:true,
-            userData:{
-                name: user.name,
-                email: user.email
-            }
-        })
+        const payload = {
+            name: user.name,
+            email: user.email
+        }
+
+        return res_help(res, true, "User data fetched successfully.", payload);
+        
     } 
     catch(err){
         return res_help(res,false,err.message.toString())

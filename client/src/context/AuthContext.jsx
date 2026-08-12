@@ -20,8 +20,8 @@ export const AuthProvider = ({children}) => {
             
             if(response.data.success){
                 setUser({
-                    id: response.data.userId,
-                    name: response.data.username
+                    id: response.data.payload.userId,
+                    name: response.data.payload.username
                 });
             }
             

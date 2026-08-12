@@ -187,11 +187,7 @@ export const filterItem = async (req,res) => {
         }
         //handling if match not found
 
-        return res.json({
-            success:true,
-            message:"Match of filter & parameter found.",
-            payload:items
-        })
+        return res_help(res, true, "Matches of filter & parameter found.", items);
     }
     catch(err){
         return res_help(res,false,err.message.toString())
@@ -204,11 +200,7 @@ export const getRecentDocument = async (req, res) => {
     try{
         const documents = await itemModel.find({user}).sort({createdAt: -1}).limit(50)
 
-        return res.json({
-            success: true,
-            message: "Documents fetched successfully.",
-            payload: documents
-        })
+        return res_help(res, true, "Documents fetched successfully", documents);
     }
     catch(err){
         return res_help(res, false, err.message)
