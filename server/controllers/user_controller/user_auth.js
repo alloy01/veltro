@@ -52,7 +52,8 @@ export const register = async (req,res)=>{
         return res_help(res,true,"Welcome.")
     }
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 
@@ -102,7 +103,8 @@ export const login = async (req,res)=>{
         return res_help(res,true,"Welcome.")
     }
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 
@@ -118,7 +120,8 @@ export const logout = async (req,res) => {
         return res_help(res,true,"Logged out of account.")
     }
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 
@@ -132,7 +135,8 @@ export const isAuthenticated = async (req,res)=>{
         return res_help(res, true, "User is authenticated.", payload);
     }
     catch(err){
-        return res_help(res,false,err.message.toString());
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 //a function that will be used in a route which then will be called by client side to check whether the user is authenticated or not

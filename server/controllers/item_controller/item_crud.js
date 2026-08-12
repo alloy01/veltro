@@ -45,7 +45,8 @@ export const addItem = async(req,res) => {
         return res_help(res,true,"Item added successfully.")
     }
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 
@@ -100,13 +101,14 @@ export const editItem = async(req,res) => {
             ...(item_category !== "" && { item_category }),
             ...(item_unit !== "" && { item_unit }),
             ...(item_desc !== "" && { item_desc })
-        },{new:true});
+        },{returnDocument: "after"});
         // update the variables whose parameters are present
 
         return res_help(res,true,"Item updated successfully.")
     }
-    catch(err){ 
-        return res_help(res,false,err.message.toString())
+    catch(err){
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 
@@ -141,7 +143,8 @@ export const deleteItem = async(req,res) => {
         return res_help(res,true,"Item was deleted successfully.")
     }
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 
@@ -190,7 +193,8 @@ export const filterItem = async (req,res) => {
         return res_help(res, true, "Matches of filter & parameter found.", items);
     }
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 
@@ -203,6 +207,7 @@ export const getRecentDocument = async (req, res) => {
         return res_help(res, true, "Documents fetched successfully", documents);
     }
     catch(err){
-        return res_help(res, false, err.message)
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }

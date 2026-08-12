@@ -25,7 +25,8 @@ const userAuth = async(req,res,next) => {
         //since this function is a middleware there will be a next function to that needs to be executed 
     }
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
 

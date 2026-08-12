@@ -9,7 +9,8 @@ const connectDB = async () => {
     
     try{
         await mongoose.connect(`${process.env.MONGODB_URI}/veltro`);
-    }catch (err){
+    }
+    catch(err){
         console.log("MongoDB connection failed.",err.message);
         process.exit(1);
     }

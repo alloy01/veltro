@@ -22,6 +22,7 @@ export const getData = async (req,res) =>{
         
     } 
     catch(err){
-        return res_help(res,false,err.message.toString())
+        console.log(err.message);
+        return res_help(res,false, "Something went wrong.");
     }
 }
