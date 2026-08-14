@@ -2,7 +2,6 @@
   "name": "Veltro",
   "version": "1.0.0",
   "description": "Open Source Software (OSS) for efficient effective and remote access based inventory management system.",
-  "license": "ISC",
   "author": "alloy01",
   "type": "module",
   "main": "server.js",
@@ -17,17 +16,9 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.7.4",
-    "nodemon": "^3.1.14"
+    "mongoose": "^9.9.2"
   },
   "devDependencies": {
-    "bcrypt": "^6.0.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.7.4",
     "nodemon": "^3.1.14"
   }
 }
