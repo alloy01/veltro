@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios.js";
 import Toast from "./Toast.jsx";
+import { ToastContext } from "../context/ToastContext.jsx";
 
 const Auth = () => {
 	// to see whether user is authenticated or not if not then redirect it to '/'
@@ -40,42 +41,7 @@ const Auth = () => {
 		}
 	};
 
-	// intial toast setup
-	const [toast, setToast] = useState({
-		visible: false,
-		message: ""
-	})
-
-	const toastTimer = useRef(null);
-
-	const showToast = (toastMessage) => {
-		setToast({
-			visible: true,
-			message: toastMessage
-		});
-
-		if(toastTimer.current){
-			clearTimeout(toastTimer.current);
-		}
-
-		toastTimer.current = setTimeout(() => {
-			setToast({
-				visible: false,
-				message: ""
-			});
-
-			toastTimer.current = null;
-		}, 3000);
-	}
-
-	// cleanup toast so we don't leave any stale component
-	useEffect(() => {
-		return () => {
-			if(toastTimer.current){
-				clearTimeout(toastTimer.current);
-			}
-		}
-	}, [])
+	const {toast, setToast, showToast} = useContext(ToastContext);
 
 	// handle submit button
 	const handleSubmit = async (e) => {

@@ -5,46 +5,12 @@ import Toast from "../components/Toast.jsx";
 import DashHeader from "../components/DashHeader.jsx";
 import DashTable from "../components/DashTable.jsx";
 import DashField from "../components/DashField.jsx";
+import { ToastContext } from "../context/ToastContext.jsx";
 
 const Dashboard = () => {
 
-    // intial toast setup
-    const [toast, setToast] = useState({
-        visible: false,
-        message: ""
-    })
-
-    const toastTimer = useRef(null);
-
-    const showToast = (toastMessage) => {
-        setToast({
-            visible: true,
-            message: toastMessage
-        });
-
-        if(toastTimer.current){
-            clearTimeout(toastTimer.current);
-        }
-
-        toastTimer.current = setTimeout(() => {
-            setToast({
-                visible: false,
-                message: ""
-            });
-
-            toastTimer.current = null;
-        }, 3000);
-    }
-
-    // cleanup toast so we don't leave any stale component
-    useEffect(() => {
-        return () => {
-            if(toastTimer.current){
-                clearTimeout(toastTimer.current);
-            }
-        }
-    }, [])
-
+    const {toast, setToast, showToast} = useContext(ToastContext);
+    
     // loaded docs state
     const [loadedDocs, setLoadedDocs] = useState(null);
 
