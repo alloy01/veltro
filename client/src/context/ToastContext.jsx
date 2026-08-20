@@ -4,6 +4,7 @@ export const ToastContext = createContext();
 
 export const ToastProvider = ({ children }) => {
 
+    // initial toast
     const [toast, setToast] = useState({
             visible: false,
             message: ""
