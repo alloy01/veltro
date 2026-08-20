@@ -9,6 +9,7 @@ const DashField = ({ setLoadedDocs }) => {
 
     // modify state like "edit item" will help us to what input fields to show when user clicks modify buttons
     const [modifyState,setModifyState] = useState(null);
+    
     // modes to avoid typos
     const modifyMode ={
         ADD: "add",

@@ -2,7 +2,8 @@ import { userModel } from "../../models/users.js";
 import { res_help } from "../../utils/response.js";
 
 export const getData = async (req,res) =>{
-    const {userId} = req.body;
+    
+    const userId = req.user.id;
     //gets userId from body of the req
     
     try{
