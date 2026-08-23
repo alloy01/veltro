@@ -109,7 +109,7 @@ const Auth = () => {
 		</button>
 
 		{/* authwall */}
-		<div className={`bg-slate-400/30 ${authWall ? `block` : `hidden`} px-6 py-4`}>
+		<div className={`bg-slate-400/30 ${authWall ? `block` : `hidden`} px-6 py-4 mx-4`}>
 
 			{/* contents of authwall */}
 			<button
