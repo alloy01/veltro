@@ -24,12 +24,12 @@ const DashHeader = () => {
     return(
         <div>
             {/* info bar */}
-            <div className="py-8 px-8 flex-col flex items-center text-slate-100 gap-y-8 font-mono">
-                <p className=" text-2xl">Veltro - Dashboard
+            <div className="py-8 px-6 md:px-10 lg:px-16 flex-col flex items-center text-slate-100 gap-y-8 font-mono">
+                <p className=" text-xl md:text-2xl">Veltro📦 - Dashboard
                 </p>
-                <div className="flex justify-between w-full px-8">
-                    <p className="text-xl">admin: {user.name}</p>
-                    <button className=" border-2 border-stone-100 px-2 py-1 cursor-pointer" onClick={logout}>
+                <div className="flex justify-between w-full items-center">
+                    <p className="text-lg md:text-xl">admin: {user.name}</p>
+                    <button className=" border md:border-2 text-base md:text-xl border-stone-100 px-2 py-1 cursor-pointer" onClick={logout}>
                         logout
                     </button>
                 </div>
