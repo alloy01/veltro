@@ -92,18 +92,18 @@ const DashField = ({ setLoadedDocs }) => {
 
     return(
 
-        <div className="flex flex-col gap-y-6">
+        <div className="flex w-full flex-col gap-y-6 items-center lg:max-w-fit">
 
             <Toast toastBlock = { toast.visible } toastMessage={ toast.message }/> 
 
             {/* modify buttons */}
-            <div className="h-fit bg-slate-400/10 border border-stone-100/20 rounded-2xl px-4 py-4 text-nowrap">
+            <div className="h-fit bg-slate-400/10 border border-stone-100/20 rounded-2xl px-4 py-4 text-nowrap sm:w-md">
                 <div className="text-center">
                     <p className="text-stone-200 text-lg whitespace-nowrap underline-offset-8 underline">Modify item
                     </p>
                 </div>
-                <div className="text-center text-stone-200 mt-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-2">
-                    <button className="cursor-pointer mb-2 px-2 border-2" onClick={() => {
+                <div className="text-center text-stone-200 mt-4 grid justify-items-center grid-cols-1 sm:grid-cols-2 gap-y-2 sm:gap-y-3">
+                    <button className="cursor-pointer py-0.5 px-2 border md:border-2 w-48" onClick={() => {
                         if(modifyState === modifyMode.ADD){
                             setModifyState(null);
                         }
@@ -113,7 +113,7 @@ const DashField = ({ setLoadedDocs }) => {
                     }}>
                     {`Add item >`}
                     </button>
-                    <button className="cursor-pointer mb-2 px-2 border-2" onClick={() => {
+                    <button className="cursor-pointer py-0.5 px-2 border md:border-2 w-48" onClick={() => {
                         if(modifyState === modifyMode.EDIT){
                             setModifyState(null);
                         }
@@ -123,7 +123,7 @@ const DashField = ({ setLoadedDocs }) => {
                     }}>
                     {`Edit item >`}
                     </button>
-                    <button className="cursor-pointer mb-2 px-2 border-2" onClick={() => {
+                    <button className="cursor-pointer py-0.5 px-2 border md:border-2 w-48" onClick={() => {
                         if(modifyState === modifyMode.FILTER){
                             setModifyState(null);
                         }
@@ -133,7 +133,7 @@ const DashField = ({ setLoadedDocs }) => {
                     }}>
                     {`Filter item >`}
                     </button>
-                    <button className="cursor-pointer mb-2 px-2 border-2" onClick={() => {
+                    <button className="cursor-pointer py-0.5 px-2 border md:border-2 w-48" onClick={() => {
                         if(modifyState === modifyMode.DELETE){
                             setModifyState(null);
                         }
@@ -147,7 +147,7 @@ const DashField = ({ setLoadedDocs }) => {
             </div>
 
             {/* modify items content area */}
-            <div className={`bg-slate-400/10 border border-stone-100/20 rounded-2xl py-2 pb-4 px-2 gap-y-4 flex-col ${modifyState !== null ? "flex" : "hidden"}`}>
+            <div className={`bg-slate-400/10 border border-stone-100/20 rounded-2xl w-full max-w-lg py-2 pb-4 gap-y-4 flex-col ${modifyState !== null ? "flex" : "hidden"}`}>
                     <form onSubmit={handleSubmit}>
                         <div>
                             <p className="text-center text-stone-200">{modifyState} item</p>
@@ -175,7 +175,7 @@ const DashField = ({ setLoadedDocs }) => {
                         </div>
 
                         <div className="min-w-max flex justify-center mt-4">
-                            <button type ="submit" className=" border-2 border-slate-100 px-8 py-1 cursor-pointer text-stone-200 w-fit self-center">
+                            <button type ="submit" className=" border md:border-2 border-slate-100 px-8 py-1 cursor-pointer text-stone-200 w-fit self-center">
                                 Done
                             </button>
                         </div>
