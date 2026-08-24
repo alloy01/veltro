@@ -46,7 +46,7 @@ const Dashboard = () => {
             />
 
             {/* area for item list and modify */}
-            <div className=" h-auto w-screen font-mono px-16 flex gap-x-4">
+            <div className="h-auto w-screen font-mono px-4 flex flex-col gap-y-4 items-center lg:items-start lg:flex-row lg:gap-x-4">
 
                 {/* modify items component */}
                 <DashField setLoadedDocs = { setLoadedDocs }/>

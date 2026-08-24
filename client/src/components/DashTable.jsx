@@ -3,9 +3,9 @@ import DocsItem from "../components/DocsItem.jsx"
 const DashTable = ({ loadedDocs }) => {
 
     return(
-        <div className="bg-slate-400/10 w-3/4 rounded-2xl border border-stone-100/20 h-fit py-2 px-4"> 
+        <div className="bg-slate-400/10 w-full rounded-2xl border border-stone-100/20 h-fit py-2 px-4 overflow-x-auto"> 
             <div>
-                <p className="text-stone-200  underline-offset-8 underline text-center text-lg">Items</p>
+                <p className="text-stone-200 underline-offset-8 underline text-center text-lg">Items</p>
                 <div className="py-4 overflow-x-auto">
                     {loadedDocs && loadedDocs.length > 0 ? (
                         <table className="w-full text-stone-200 font-mono">
