@@ -51,7 +51,7 @@ const Auth = () => {
 		const payload = formData;
 
 		const response = await api.post(
-			`${import.meta.env.VITE_API_URL}/auth/${signWall ? `register` : `login`}`,
+			`/auth/${signWall ? `register` : `login`}`,
 			payload
 		);
 
