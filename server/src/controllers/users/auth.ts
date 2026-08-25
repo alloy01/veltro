@@ -15,7 +15,6 @@ export const register = async (req: Request, res: Response) => {
     }
 
     try{
-
         const existingUser = await userModel.findOne({email});
 
         if(existingUser){
@@ -60,7 +59,6 @@ export const login = async (req: Request, res: Response) => {
     }
 
     try{
-        
         const user = await userModel.findOne({email});
 
         if(!user){
@@ -92,10 +90,27 @@ export const login = async (req: Request, res: Response) => {
     }
 }
 
+export const logout = async (req: Request, res: Response) => {
+
+    try{
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict'
+        })
+    }
+    catch(err){
+        if(err instanceof Error){
+            console.error(err.message);
+        }
+
+        return sendResponse(res, false, 'Something went wrong.', 400);
+    }
+}
+
 export const isAuthenticated = async (req: Request, res: Response) => {
 
     try{
-
         if(!req.user){
             return sendResponse(res, false, "Not authenticated.", 401);
         }
