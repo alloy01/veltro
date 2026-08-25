@@ -3,10 +3,15 @@ interface AuthUser {
     username: string;
 }
 
+interface Cookie {
+    cookie: string;
+}
+
 declare global {
     namespace Express {
         interface Request {
             user?: AuthUser;
+            cookies?: Cookie;
         }
     }
 }
