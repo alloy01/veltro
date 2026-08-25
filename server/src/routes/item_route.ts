@@ -5,7 +5,7 @@ import { addItem, editItem, deleteItem, filterItem, getItems } from "../controll
 const itemRouter = express.Router();
 itemRouter.use(userAuth);
 
-itemRouter.post('/fetch', getItems);
+itemRouter.get('/fetch', getItems);
 itemRouter.post('/add', addItem);
 itemRouter.post('/edit', editItem);
 itemRouter.post('/delete', deleteItem);

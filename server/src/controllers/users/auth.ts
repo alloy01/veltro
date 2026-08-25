@@ -98,6 +98,8 @@ export const logout = async (req: Request, res: Response) => {
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict'
         })
+
+        return sendResponse(res, true, 'Logged out successfully.', 200);
     }
     catch(err){
         if(err instanceof Error){

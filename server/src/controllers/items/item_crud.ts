@@ -62,7 +62,15 @@ export const editItem = async (req: Request, res: Response) => {
         return sendResponse(res, false, 'Item name not provided.', 400);
     }
 
-    if(!item_desc && !item_category && item_quantity !== undefined && !item_status && item_costprice !== undefined && !item_unit && !item_supplier){
+    if(
+        item_desc === undefined &&
+        item_category === undefined &&
+        item_quantity === undefined &&
+        item_status === undefined &&
+        item_costprice === undefined &&
+        item_unit === undefined &&
+        item_supplier === undefined
+    ){
         return sendResponse(res,false,'No parameter found to update.', 400);
     }
     

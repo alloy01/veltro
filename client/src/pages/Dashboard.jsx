@@ -17,7 +17,7 @@ const Dashboard = () => {
     // fetching the latest 50 documents on login
     const fetchDocs = async () => {
         try{
-            const response = await api.get("/item/fetch-docs");
+            const response = await api.get("/item/fetch");
             
             // showing message in the toast
             showToast(response.data.message);
