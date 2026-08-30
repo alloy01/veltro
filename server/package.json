@@ -6,7 +6,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "tsc /src",
+    "compile": "tsc",
     "start": "nodemon dist/server.js"
   },
   "dependencies": {
