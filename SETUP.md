@@ -168,3 +168,165 @@ If you encounter any errors:
 
 * **Server errors** will generally appear in the server terminal.
 * **Client-side errors** can be found in the browser's Developer Tools console.
+
+---
+
+## Containerized Setup
+
+The containerized setup runs the Veltro client, server, and MongoDB database using Docker and Docker Compose.
+
+### 1. Install Docker
+
+Install Docker based on your operating system:
+
+* **Windows / macOS:** Install Docker Desktop.
+* **Linux:** Install Docker Engine and Docker Compose.
+
+After installation, ensure that Docker is running.
+
+---
+
+### 2. Verify Docker Installation
+
+Run:
+
+```bash
+docker --version
+docker compose version
+```
+
+You should see the installed Docker and Docker Compose versions.
+
+You can also verify that the Docker Engine is running by running:
+
+```bash
+docker ps
+```
+
+If the command runs successfully, Docker is ready.
+
+---
+
+### 3. Clone or Download the Repository
+
+#### Clone Method
+
+```bash
+git clone https://github.com/alloy01/veltro.git
+cd veltro
+```
+
+#### ZIP Method
+
+Download the repository as a `.zip` file, extract it, and open the extracted `veltro` folder in your terminal or preferred code editor.
+
+---
+
+### 4. Configure Environment Variables
+
+Veltro uses Docker Compose to configure and connect the application services.
+
+Review the environment variables inside `compose.yml` before starting the application.
+
+If required, update values such as:
+
+* MongoDB connection settings
+* JWT secret
+* Application ports
+* Environment mode
+
+> **Important:** Do not use production secrets in a public repository. Store sensitive values in environment files that are excluded from Git when deploying the application.
+
+---
+
+### 5. Build and Start the Containers
+
+From the root `veltro` directory, run:
+
+```bash
+docker compose up --build
+```
+
+Docker Compose will:
+
+1. Build the Veltro client image.
+2. Build the Veltro server image.
+3. Pull the MongoDB image if it is not already available.
+4. Create the required network automatically.
+5. Start the client, server, and MongoDB containers.
+
+---
+
+### 6. Open Veltro
+
+Once all containers have started successfully, open:
+
+```text
+http://localhost:5173
+```
+
+in your browser.
+
+The application services will communicate through the Docker Compose network.
+
+---
+
+### 7. Stop the Containers
+
+To stop the running containers, press:
+
+```text
+Ctrl + C
+```
+
+Alternatively, if the containers are running in detached mode:
+
+```bash
+docker compose down
+```
+
+---
+
+### Optional: Run in Detached Mode
+
+To run the containers in the background:
+
+```bash
+docker compose up --build -d
+```
+
+View the logs using:
+
+```bash
+docker compose logs -f
+```
+
+Stop and remove the containers using:
+
+```bash
+docker compose down
+```
+
+---
+
+### Useful Docker Compose Commands
+
+```bash
+# Start containers
+docker compose up
+
+# Build and start containers
+docker compose up --build
+
+# Run containers in the background
+docker compose up -d
+
+# View running containers
+docker compose ps
+
+# View application logs
+docker compose logs -f
+
+# Stop and remove containers
+docker compose down
+```
