@@ -42,9 +42,7 @@ export const register = async (req: Request, res: Response) => {
         return sendResponse(res, true, `Welcome ${username}.`, 201);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
         
         return sendResponse(res, false, 'Something went wrong.', 400);
     }
@@ -82,9 +80,7 @@ export const login = async (req: Request, res: Response) => {
         return sendResponse(res, true, `Welcome ${user.username}.`, 200);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
         
         return sendResponse(res, false, 'Something went wrong.', 400);
     }
@@ -102,9 +98,7 @@ export const logout = async (req: Request, res: Response) => {
         return sendResponse(res, true, 'Logged out successfully.', 200);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong.', 400);
     }
@@ -125,9 +119,7 @@ export const isAuthenticated = async (req: Request, res: Response) => {
         sendResponse(res, true, 'User is authenticated.', 200, payload);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
         
         return sendResponse(res, false, 'Something went wrong.', 400);
     }

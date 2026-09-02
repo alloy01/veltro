@@ -25,9 +25,7 @@ export const fetchUser = async (req: Request, res: Response) => {
         return sendResponse(res, true, 'User fetched successfully.', 200, payload);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong.', 500);
     }

@@ -40,9 +40,7 @@ export const addItem = async (req: Request, res: Response) => {
         return sendResponse(res, true, 'Item added successfully.', 201);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong', 500);
     }
@@ -107,9 +105,7 @@ export const editItem = async (req: Request, res: Response) => {
 
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong.', 500);
     }
@@ -142,9 +138,7 @@ export const deleteItem = async (req: Request, res: Response) => {
         return sendResponse(res, true, 'Item was deleted successfully.', 200);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong.', 500);
     }
@@ -186,9 +180,7 @@ export const filterItem = async (req: Request, res: Response) => {
         return sendResponse(res, true, 'Matches of filter & parameter found.', 200, items);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong.', 500);
     }
@@ -208,9 +200,7 @@ export const getItems = async (req: Request, res: Response) => {
         return sendResponse(res, true, 'Documents fetched successfully', 200, documents);
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong', 500);
     }

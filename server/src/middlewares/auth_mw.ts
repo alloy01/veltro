@@ -27,9 +27,7 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
         next();
     }
     catch(err){
-        if(err instanceof Error){
-            console.error(err.message);
-        }
+        console.log(`Err: `, err);
 
         return sendResponse(res, false, 'Something went wrong', 401);
     }
