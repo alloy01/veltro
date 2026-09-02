@@ -27,6 +27,7 @@ export const AuthProvider = ({children}) => {
             
         }
         catch(err){
+            
             setUser({
                 id: null,
                 name: null

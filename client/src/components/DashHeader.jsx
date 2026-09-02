@@ -17,7 +17,7 @@ const DashHeader = () => {
             window.location.reload();
         }
         catch(err){
-            showToast(err.message);
+            showToast(err.response?.data?.message || 'Something went wrong.');
         }
     }
 

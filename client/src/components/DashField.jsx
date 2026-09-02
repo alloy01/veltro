@@ -57,7 +57,7 @@ const DashField = ({ setLoadedDocs }) => {
 
         catch(err){
             // shows the error message in toast
-            showToast(err.message);
+            showToast(err.response?.data?.message || 'Something went wrong.');
         }
     }
 

@@ -26,7 +26,7 @@ const Dashboard = () => {
         }
         catch(err){
             // showing error in the toast
-            showToast(err.message);
+            showToast(err.response?.data?.message || 'Something went wrong.');
         }
     }
 
